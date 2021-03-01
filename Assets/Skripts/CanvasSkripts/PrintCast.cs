@@ -8,15 +8,12 @@ using UnityEngine.UI;
 public class PrintCast : MonoBehaviour
 {
     public GameObject g;
-    public GameObject newObject;
-    public bool isTree;
     public int index;
 
     Text text;
     Stock sugar;
     Stock water;
 
-    private bool newBool = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,29 +25,8 @@ public class PrintCast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!newBool)
-        {
-            if (isTree)
-            {
-                var casts = g.GetComponent<TreeSkript>().GetCast().ToList();
-                Do(casts);
-            }
-            else
-            {
-                var casts = g.GetComponent<KorenSkript>().GetCast().ToList();
-                Do(casts);
-            }
-        }
-        else
-        {
-            var casts = newObject.GetComponent<ImageSkript>().GetCast().ToList();
-            Do(casts);
-        }
-    }
-
-    public void Step()
-    {
-        newBool = !newBool;
+        var casts = g.GetComponent<ImageSkript>().GetCast().ToList();
+        Do(casts);
     }
 
     private void Do(List<float> casts)

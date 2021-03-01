@@ -6,12 +6,11 @@ using UnityEngine.UI;
 
 public class ButtonSkript : MonoBehaviour
 {
-    public GameObject first;
-    public GameObject second;
     public GameObject target;
     public GameObject rotate;
-    public List<PrintCast> prints;
-    public List<GameObject> buttons;
+    public GameObject HidesSecond;
+    public GameObject HidesFirst;
+
 
     GameObject newG;
     int counter = 0;
@@ -48,7 +47,7 @@ public class ButtonSkript : MonoBehaviour
                                 g.GetComponent<Stock>().AddStart();
                             }
                         }
-                        counter = 0;
+                        counter = 1;
                         newG = null;
                         return;
                     }
@@ -59,15 +58,13 @@ public class ButtonSkript : MonoBehaviour
 
     private void Do(bool bb)
     {
-        buttons.ForEach(b => b.SetActive(!bb));
-        prints.ForEach(p => p.Step());
-        first.SetActive(bb);
-        second.SetActive(bb);
+        HidesSecond.SetActive(!bb);
+        HidesFirst.SetActive(bb);
     }
 
     public void Click(GameObject g, Touch t)
     {
-        Do(false);
+        //Do(false);
         rotate.SetActive(true);
         newG = Instantiate(g, new Vector3(0, 0, 0), new Quaternion());
         rotate.GetComponent<joysticController>().sqController = newG.GetComponent<SquareController>();
