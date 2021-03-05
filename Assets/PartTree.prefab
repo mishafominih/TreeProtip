@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 761349311559982249}
   - component: {fileID: 8437106103442089119}
   - component: {fileID: 3754498484028130543}
-  - component: {fileID: 7094180991207837177}
+  - component: {fileID: 5513996624626519073}
   m_Layer: 0
   m_Name: PartTree
   m_TagString: tree
@@ -74,8 +74,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
---- !u!61 &7094180991207837177
-BoxCollider2D:
+--- !u!60 &5513996624626519073
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -87,19 +87,25 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.002718091, y: 0.49872315}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.33, y: 18.38}
-    newSize: {x: 3.33, y: 18.38}
-    adaptiveTilingThreshold: 0.5
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.10149932, y: 0.98859787}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.02929318, y: 0.82966447}
+      - {x: 0.0062965155, y: 1.0251918}
+      - {x: -0.019695759, y: 0.87289715}
+      - {x: -0.03753239, y: 0.5270277}
+      - {x: -0.057213366, y: 0.00033712387}
+      - {x: 0.0681541, y: 0.0004171133}
+      - {x: 0.040492654, y: 0.5159157}
 --- !u!1 &761349311724197517
 GameObject:
   m_ObjectHideFlags: 0

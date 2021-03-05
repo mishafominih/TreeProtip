@@ -5,15 +5,19 @@ using UnityEngine.UI;
 
 public class listSkript : MonoBehaviour
 {
-    Stock sugar;
+    public float delta = 0.1f;
+    public Stock sugar;
+
+    private PolutionListSkript polution;
     void Start()
     {
+        polution = GetComponent<PolutionListSkript>();
         sugar = GameObject.Find("sugar").GetComponent<Stock>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        sugar.AddPart(0.1f);
+        sugar.AddPart(polution.GetProfit(delta));
     }
 }

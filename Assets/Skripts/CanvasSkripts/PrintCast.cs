@@ -25,7 +25,7 @@ public class PrintCast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var casts = g.GetComponent<ImageSkript>().GetCast().ToList();
+        var casts = g.GetComponent<AddItemSkript>().GetCast().ToList();
         Do(casts);
     }
 

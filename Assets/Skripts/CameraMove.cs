@@ -119,7 +119,7 @@ public class CameraMove : MonoBehaviour
     {
         if (Input.touchCount == 2)
         {
-            var dist = Input.GetTouch(0).position.magnitude - Input.GetTouch(1).position.magnitude;
+            var dist = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
             dist = Mathf.Abs(dist);
             if (firstDist)
             {

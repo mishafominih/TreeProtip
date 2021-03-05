@@ -5,9 +5,9 @@ using UnityEngine;
 public class TargetSkript : MonoBehaviour
 {
     public GameObject target;
+    public Camera cam;
 
     private GameObject jostick;
-    private Camera cam;
     void Start()
     {
         jostick = GameObject.FindGameObjectWithTag("jostick");

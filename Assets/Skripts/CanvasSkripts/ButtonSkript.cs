@@ -32,28 +32,39 @@ public class ButtonSkript : MonoBehaviour
                     counter = 0;
                     return;
                 }
-                foreach (var tree in GameObject.FindGameObjectsWithTag("tree"))
-                {
-                    if (tree.GetComponent<BoxCollider2D>().bounds.Contains(newG.transform.position) && tree != newG)
-                    {
-                        var tt = Instantiate(target, newG.transform.position, new Quaternion());
-                        tt.transform.SetParent(tree.transform.GetChild(0).transform);
-                        newG.GetComponent<TargetSkript>().target = tt;
-                        rotate.SetActive(false);
-                        if (newG.tag == "tree")
-                        {
-                            foreach (var g in GameObject.FindGameObjectsWithTag("stock"))
-                            {
-                                g.GetComponent<Stock>().AddStart();
-                            }
-                        }
-                        counter = 1;
-                        newG = null;
-                        return;
-                    }
-                }
+
+                if (newG.tag == "root") CheckAndSet("root");
+                else CheckAndSet("tree");
+
+                return;
             }
         });
+    }
+
+    private void CheckAndSet(string baseNameTag)
+    {
+        foreach (var obj in GameObject.FindGameObjectsWithTag(baseNameTag))
+        {
+            if (obj.GetComponent<PolygonCollider2D>().OverlapPoint(newG.transform.position) && obj != newG)
+            {
+                var tt = Instantiate(target, newG.transform.position, new Quaternion());
+                tt.transform.SetParent(obj.transform.GetChild(0).transform);
+                newG.GetComponent<TargetSkript>().target = tt;
+                rotate.SetActive(false);
+                if (newG.tag == "tree")
+                {
+                    foreach (var g in GameObject.FindGameObjectsWithTag("stock"))
+                    {
+                        g.GetComponent<Stock>().AddStart();
+                    }
+                }
+                if(newG.tag == "list")
+                    newG.GetComponent<SquareController>().enabled = false;
+                counter = 1;
+                newG = null;
+                break;
+            }
+        }
     }
 
     private void Do(bool bb)
@@ -62,7 +73,7 @@ public class ButtonSkript : MonoBehaviour
         HidesFirst.SetActive(bb);
     }
 
-    public void Click(GameObject g, Touch t)
+    public void Click(GameObject g)
     {
         //Do(false);
         rotate.SetActive(true);
@@ -72,15 +83,17 @@ public class ButtonSkript : MonoBehaviour
 
     private void Update()
     {
-        GetComponent<Image>().color = Color.white;
+        var image = GetComponent<Image>();
+        image.color = Color.white;
         if (counter != 0 && newG != null)
         {
-            var count = GameObject.FindGameObjectsWithTag("tree")
-                .Where(tree => tree.GetComponent<BoxCollider2D>().bounds.Contains(newG.transform.position))
+            var count = GameObject.FindGameObjectsWithTag((newG.tag == "root") ? "root" : "tree")
+                .Where(tree => tree != newG)
+                .Where(tree => tree.GetComponent<PolygonCollider2D>().OverlapPoint(newG.transform.position))
                 .Count();
             if(count > 0)
             {
-                GetComponent<Image>().color = Color.green;
+                image.color = Color.green;
             }
         }
     }
