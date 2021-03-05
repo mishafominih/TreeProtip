@@ -22,7 +22,7 @@ public class KorenSkript : MonoBehaviour
         water.AddPart(0.01f * level * level);
     }
 
-    public IEnumerable<float> GetCast()
+    public List<float> GetCast()
     {//вначале сахар потом вода
         var z = GameObject.FindGameObjectsWithTag("stock")
             .Select(x => x.GetComponent<Stock>().MaxValue)
@@ -34,16 +34,16 @@ public class KorenSkript : MonoBehaviour
 
     public void Grow()
     {
-        if (sugar.TakePart(GetCast().ToArray()[0])){
-            if (water.TakePart(GetCast().ToArray()[1]))
+        if (sugar.Get() >= GetCast()[0]){
+            if (water.Get() >= GetCast()[1])
             {
-                transform.localScale = new Vector3(
-                    transform.localScale.x + Step,
-                    transform.localScale.y + Step);
+                sugar.TakePart(GetCast()[0]);
+                sugar.TakePart(GetCast()[1]);
+                foreach (var root in GameObject.FindGameObjectsWithTag("root"))
+                {
+                    root.transform.localScale += new Vector3(Step, Step, 0);
+                }
                 level++;
-            }
-            else{
-                sugar.AddPart(GetCast().ToArray()[0]);
             }
         }
     }
