@@ -81,6 +81,8 @@ public class ButtonSkript : MonoBehaviour
         rotate.GetComponent<joysticController>().sqController = newG.GetComponent<SquareController>();
     }
 
+    public bool IsFree() => newG == null;
+
     private void Update()
     {
         var image = GetComponent<Image>();

@@ -6,10 +6,8 @@ using UnityEngine.UI;
 
 public class KorenSkript : MonoBehaviour
 {
-    public float Step;
     Stock sugar;
     Stock water;
-    private int level = 1;
     void Start()
     {
         sugar = GameObject.Find("sugar").GetComponent<Stock>();
@@ -19,6 +17,7 @@ public class KorenSkript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var level = GetComponent<KorenGrowSkript>().GetLavel();
         water.AddPart(0.01f * level * level);
     }
 
@@ -41,9 +40,8 @@ public class KorenSkript : MonoBehaviour
                 sugar.TakePart(GetCast()[1]);
                 foreach (var root in GameObject.FindGameObjectsWithTag("root"))
                 {
-                    root.transform.localScale += new Vector3(Step, Step, 0);
+                    root.GetComponent<KorenGrowSkript>().Grow();
                 }
-                level++;
             }
         }
     }

@@ -24,7 +24,7 @@ public class AddItemSkript : MonoBehaviour
         water = GameObject.Find("water").GetComponent<Stock>();
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            if (sugar.Get() >= GetCast()[0] && water.Get() >= GetCast()[1])
+            if (sugar.Get() >= GetCast()[0] && water.Get() >= GetCast()[1] && btn.IsFree())
             {
                 sugar.TakePart(GetCast()[0]);
                 water.TakePart(GetCast()[1]);
