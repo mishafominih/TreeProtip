@@ -8,10 +8,11 @@ public class CameraMove : MonoBehaviour
     public float speedDistance = 0.5f;
     public float speedMove = 0.5f;
     public float ControlX = 3;
-    public float ControlY = 3;
+    public float UpY = 3;
     public float ControlSize = 8;
     public GameObject Joistick;
-    public float DownLayer = -7;
+    public float MidleY = -7;
+    public float DownY = -7;
 
     private Camera cam;
     private Vector2 PreviousTouch;
@@ -19,6 +20,7 @@ public class CameraMove : MonoBehaviour
     private float previousDist;
     private bool firstDist  = true;
     private bool isUp = true;
+    private bool isAnimation = false;
     //private float distance;
 
     // Start is called before the first frame update
@@ -30,53 +32,72 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isUp)
-        {
-            if (transform.position.y < 0 && cam.orthographicSize == 5)
-                transform.position += new Vector3(0, 0.1f, 0);
-            else
-            {
-                UpdatePosition();//изменяет позицию
-                UpdateSize();//изменяет массштаб
-                Control();//контроллирует нахождение камеры в указанных пределах
-            }
-        }
+        if (isAnimation)
+            LogicControl();
         else
         {
-            if (transform.position.y > DownLayer)
+            UpdatePosition();//изменяет позицию
+            UpdateSize();//изменяет массштаб
+            if (isUp)
+                Control(UpY, 0);//контроллирует нахождение камеры в указанных пределах
+            else
             {
-                if (transform.position.x != 0) 
-                    transform.position = new Vector3(0, transform.position.y, transform.position.z);
-                if (Mathf.Abs(cam.orthographicSize - 5) < 0.15f) cam.orthographicSize = 5;
-                if (cam.orthographicSize < 5) cam.orthographicSize += 0.1f;
-                else if (cam.orthographicSize > 5) cam.orthographicSize -= 0.1f;
-                else transform.position += new Vector3(0, -0.1f, 0);
+                Control(MidleY, DownY);//контроллирует нахождение камеры в указанных пределах
+                if (cam.orthographicSize > 5) cam.orthographicSize = 5;
             }
         }
+    }
+
+    private void LogicControl()
+    {
+        if (isUp)
+            if (transform.position.y < 0)
+                ControlAnim(0.5f);
+            else
+                isAnimation = false;
+        else
+            if (transform.position.y > MidleY)
+            ControlAnim(-0.5f);
+        else
+            isAnimation = false;
+    }
+
+    private void ControlAnim(float d)
+    {
+        if (transform.position.x != 0)
+            transform.position = new Vector3(0, transform.position.y, transform.position.z);
+        if (Mathf.Abs(cam.orthographicSize - 5) < 0.15f) cam.orthographicSize = 5;
+        if (cam.orthographicSize < 5) cam.orthographicSize += 0.1f;
+        else if (cam.orthographicSize > 5) cam.orthographicSize -= 0.1f;
+        else transform.position += new Vector3(0, d, 0);
     }
 
     public void Switch()
     {
         isUp = !isUp;
+        isAnimation = true;
     }
 
-    private void Control()
+    private void Control(float upY, float downY)
     {
-        if (cam.orthographicSize - 5 > transform.position.y)
+        if (cam.orthographicSize - 5 > transform.position.y - downY)
         {
             transform.position = new Vector3(
                 transform.position.x,
-                cam.orthographicSize - 5,
+                cam.orthographicSize - 5 + downY,
                 transform.position.z
                 );
         }
         if (cam.orthographicSize > ControlSize)
             cam.orthographicSize = ControlSize;
-        if(transform.position.y > ControlY)
+        if (cam.orthographicSize < 0.1f)
+            cam.orthographicSize = 0.1f;
+        float vect = upY - (cam.orthographicSize - 5) / 2;
+        if (vect < transform.position.y)
         {
             transform.position = new Vector3(
                 transform.position.x,
-                ControlY,
+                vect,
                 transform.position.z
                 );
         }

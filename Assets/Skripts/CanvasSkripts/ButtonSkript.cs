@@ -8,6 +8,7 @@ public class ButtonSkript : MonoBehaviour
 {
     public GameObject target;
     public GameObject rotate;
+    public GameObject revert;
     public GameObject HidesSecond;
     public GameObject HidesFirst;
 
@@ -41,6 +42,14 @@ public class ButtonSkript : MonoBehaviour
         });
     }
 
+    public void Null()
+    {
+        Destroy(newG);
+        newG = null;
+        rotate.SetActive(false);
+        revert.SetActive(false);
+    }
+
     private void CheckAndSet(string baseNameTag)
     {
         foreach (var obj in GameObject.FindGameObjectsWithTag(baseNameTag))
@@ -51,6 +60,7 @@ public class ButtonSkript : MonoBehaviour
                 tt.transform.SetParent(obj.transform.GetChild(0).transform);
                 newG.GetComponent<TargetSkript>().target = tt;
                 rotate.SetActive(false);
+                revert.SetActive(false);
                 if (newG.tag == "tree")
                 {
                     foreach (var g in GameObject.FindGameObjectsWithTag("stock"))
@@ -77,6 +87,7 @@ public class ButtonSkript : MonoBehaviour
     {
         //Do(false);
         rotate.SetActive(true);
+        revert.SetActive(true);
         newG = Instantiate(g, new Vector3(0, 0, 0), new Quaternion());
         rotate.GetComponent<joysticController>().sqController = newG.GetComponent<SquareController>();
     }
