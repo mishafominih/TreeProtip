@@ -18,8 +18,8 @@ public class PrintLevelUpCast : MonoBehaviour
     void Start()
     {
         text = GetComponent<Text>();
-        sugar = GameObject.Find("sugar").GetComponent<Stock>();
-        water = GameObject.Find("water").GetComponent<Stock>();
+        sugar = GameInfo.Instance.sugar;
+        water = GameInfo.Instance.water;
     }
 
     // Update is called once per frame

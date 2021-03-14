@@ -24,8 +24,8 @@ public class DropSkript : MonoBehaviour
             if (objects.Count == 3 || 
                 objects.First().GetComponent<KorenGrowSkript>().GetLavel() - lavel > 2)
             {
-                var sugar = GameObject.Find("sugar").GetComponent<Stock>();
-                var water = GameObject.Find("water").GetComponent<Stock>();
+                var sugar = GameInfo.Instance.sugar;
+                var water = GameInfo.Instance.water;
                 sugar.AddPart(Sugar);
                 water.AddPart(Water);
                 Destroy(gameObject);

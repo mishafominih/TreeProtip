@@ -12,7 +12,7 @@ public class listSkript : MonoBehaviour
     void Start()
     {
         polution = GetComponent<PolutionListSkript>();
-        sugar = GameObject.Find("sugar").GetComponent<Stock>();
+        sugar = GameInfo.Instance.sugar;
     }
 
     // Update is called once per frame

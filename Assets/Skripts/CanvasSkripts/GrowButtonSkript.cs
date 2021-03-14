@@ -10,8 +10,8 @@ public class GrowButtonSkript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var sugar = GameObject.Find("sugar").GetComponent<Stock>();
-        var water = GameObject.Find("water").GetComponent<Stock>();
+        var sugar = GameInfo.Instance.sugar;
+        var water = GameInfo.Instance.water;
         GetComponent<Button>().onClick.AddListener(() =>
         {
             if (sugar.TakePart(tree.GetCast().ToArray()[0]))

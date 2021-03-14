@@ -23,9 +23,8 @@ public class PolutionListSkript : MonoBehaviour
         target = GetComponent<TargetSkript>();
         collider = GetComponent<PolygonCollider2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
-        var stocks = GameObject.FindGameObjectsWithTag("stock");
-        sugar = stocks.Where(x => x.name == "sugar").First().GetComponent<Stock>();
-        water = stocks.Where(x => x.name == "water").First().GetComponent<Stock>();
+        sugar = GameInfo.Instance.sugar;
+        water = GameInfo.Instance.water;
     }
 
     // Update is called once per frame

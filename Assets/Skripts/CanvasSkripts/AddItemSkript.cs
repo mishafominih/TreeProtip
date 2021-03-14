@@ -20,8 +20,8 @@ public class AddItemSkript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sugar = GameObject.Find("sugar").GetComponent<Stock>();
-        water = GameObject.Find("water").GetComponent<Stock>();
+        sugar = GameInfo.Instance.sugar;
+        water = GameInfo.Instance.water;
         GetComponent<Button>().onClick.AddListener(() =>
         {
             if (sugar.Get() >= GetCast()[0] && water.Get() >= GetCast()[1] && btn.IsFree())
