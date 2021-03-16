@@ -21,8 +21,8 @@ public class DropSkript : MonoBehaviour
     {
         if (objects.Count != 0) 
         {
-            if (objects.Count == 3 || 
-                objects.First().GetComponent<LavelInfo>().Lavel - lavel > 2)
+            if (objects.Count == 2 || 
+                objects.First().GetComponent<LavelInfo>().Lavel - lavel > 0)
             {
                 var sugar = GameInfo.Instance.sugar;
                 var water = GameInfo.Instance.water;
