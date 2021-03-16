@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
+    public static CameraMove Instance;
     public float speedDistance = 0.5f;
     public float speedMove = 0.5f;
     public float ControlX = 3;
@@ -22,6 +23,12 @@ public class CameraMove : MonoBehaviour
     private bool isUp = true;
     private bool isAnimation = false;
     //private float distance;
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()

@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 1084869461845392911}
   - component: {fileID: 3086022498293913940}
   - component: {fileID: 4650936966368352018}
+  - component: {fileID: 4143662057067011690}
   m_Layer: 0
   m_Name: Root
   m_TagString: tree
@@ -126,7 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d60ef6ba8acfb45899df0b987cb692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Step: 0.1
 --- !u!61 &4650936966368352018
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -153,3 +153,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9012909, y: 1.4577487}
   m_EdgeRadius: 0
+--- !u!114 &4143662057067011690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3785592508917344477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bc96576ae13b9b45aed24bd9b13c978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

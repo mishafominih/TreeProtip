@@ -18,6 +18,7 @@ public class listSkript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sugar.AddPart(polution.GetProfit(delta));
+        if(Seazons.Instance.IsSummer)
+            sugar.AddPart(polution.GetProfit(delta));
     }
 }

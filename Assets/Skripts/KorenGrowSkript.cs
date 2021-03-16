@@ -6,14 +6,12 @@ public class KorenGrowSkript : MonoBehaviour
 {
     public float Step;
 
-    private int level = 1;
+    private LavelInfo lavel;
     // Start is called before the first frame update
     void Start()
     {
-        
+        lavel = GetComponent<LavelInfo>();
     }
-
-    public int GetLavel() => level;
 
     // Update is called once per frame
     void Update()
@@ -24,6 +22,6 @@ public class KorenGrowSkript : MonoBehaviour
     public void Grow()
     {
         transform.localScale += new Vector3(Step, Step, 0);
-        level++;
+        lavel.Increment();
     }
 }

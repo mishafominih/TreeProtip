@@ -11,13 +11,13 @@ public class GameInfo : MonoBehaviour
     public void Awake()
     {
         Instance = this;
+        sugar = TreeSkript.Instance.GetStocks()[0];
+        water = TreeSkript.Instance.GetStocks()[1];
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        sugar = TreeSkript.Instance.GetStocks()[0];
-        water = TreeSkript.Instance.GetStocks()[1];
     }
 
     // Update is called once per frame

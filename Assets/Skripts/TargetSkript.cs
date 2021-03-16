@@ -5,11 +5,13 @@ using UnityEngine;
 public class TargetSkript : MonoBehaviour
 {
     public GameObject target;
-    public Camera cam;
+
+
+    private Camera cam;
 
     void Start()
     {
-        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        cam = CameraMove.Instance.GetComponent<Camera>();
     }
 
 

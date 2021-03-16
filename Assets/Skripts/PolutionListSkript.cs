@@ -36,7 +36,8 @@ public class PolutionListSkript : MonoBehaviour
 
         if(Input.touchCount == 1)
         {
-            var touch = GetComponent<TargetSkript>().cam.ScreenToWorldPoint(Input.GetTouch(0).position);
+            var touch = CameraMove.Instance.GetComponent<Camera>()
+                .ScreenToWorldPoint(Input.GetTouch(0).position);
             if (collider.OverlapPoint(touch))
             {
                 timer = 0;

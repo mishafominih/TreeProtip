@@ -9,7 +9,7 @@ public class TreeSkript : MonoBehaviour
 
 
     public float Step;
-    private int level = 1;
+    private LavelInfo lavel;
 
     public void Awake()
     {
@@ -19,6 +19,7 @@ public class TreeSkript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        lavel = GetComponent<LavelInfo>();
     }
 
     /// <summary>
@@ -46,11 +47,11 @@ public class TreeSkript : MonoBehaviour
         transform.localScale = new Vector3(
             transform.localScale.x + Step,
             transform.localScale.y + Step);
-        level++;
+        lavel.Increment();
         foreach (var g in GameObject.FindGameObjectsWithTag("stock"))
         {
             g.GetComponent<Stock>().MaxValue *= 1.2f;
-            level++;
+            lavel.Increment();
         }
     }
 }

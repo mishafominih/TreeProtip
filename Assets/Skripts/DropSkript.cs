@@ -22,7 +22,7 @@ public class DropSkript : MonoBehaviour
         if (objects.Count != 0) 
         {
             if (objects.Count == 3 || 
-                objects.First().GetComponent<KorenGrowSkript>().GetLavel() - lavel > 2)
+                objects.First().GetComponent<LavelInfo>().Lavel - lavel > 2)
             {
                 var sugar = GameInfo.Instance.sugar;
                 var water = GameInfo.Instance.water;
@@ -42,7 +42,7 @@ public class DropSkript : MonoBehaviour
             {
                 objects.Add(collision.gameObject);
                 if(objects.Count == 1)
-                    lavel = collision.GetComponent<KorenGrowSkript>().GetLavel();
+                    lavel = collision.GetComponent<LavelInfo>().Lavel;
             }
         }
 

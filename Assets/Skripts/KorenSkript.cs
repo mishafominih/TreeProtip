@@ -17,7 +17,7 @@ public class KorenSkript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var level = GetComponent<KorenGrowSkript>().GetLavel();
+        var level = GetComponent<LavelInfo>().Lavel;
         water.AddPart(0.01f * level * level);
     }
 

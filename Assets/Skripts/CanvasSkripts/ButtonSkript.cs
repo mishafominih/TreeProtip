@@ -54,26 +54,27 @@ public class ButtonSkript : MonoBehaviour
     {
         foreach (var obj in GameObject.FindGameObjectsWithTag(baseNameTag))
         {
-            if (obj.GetComponent<PolygonCollider2D>().OverlapPoint(newG.transform.position) && obj != newG)
-            {
-                var tt = Instantiate(target, newG.transform.position, new Quaternion());
-                tt.transform.SetParent(obj.transform.GetChild(0).transform);
-                newG.GetComponent<TargetSkript>().target = tt;
-                rotate.SetActive(false);
-                revert.SetActive(false);
-                if (newG.tag == "tree")
+            if (newG.tag == "list" || obj.GetComponent<LavelInfo>().GetConfirm())
+                if (obj.GetComponent<PolygonCollider2D>().OverlapPoint(newG.transform.position) && obj != newG)
                 {
-                    foreach (var g in GameObject.FindGameObjectsWithTag("stock"))
+                    var tt = Instantiate(target, newG.transform.position, new Quaternion());
+                    tt.transform.SetParent(obj.transform.GetChild(0).transform);
+                    newG.GetComponent<TargetSkript>().target = tt;
+                    rotate.SetActive(false);
+                    revert.SetActive(false);
+                    if (newG.tag == "tree")
                     {
-                        g.GetComponent<Stock>().AddStart();
+                        foreach (var g in GameObject.FindGameObjectsWithTag("stock"))
+                        {
+                            g.GetComponent<Stock>().AddStart();
+                        }
                     }
+                    if(newG.tag == "list")
+                        newG.GetComponent<SquareController>().enabled = false;
+                    counter = 1;
+                    newG = null;
+                    break;
                 }
-                if(newG.tag == "list")
-                    newG.GetComponent<SquareController>().enabled = false;
-                counter = 1;
-                newG = null;
-                break;
-            }
         }
     }
 
@@ -102,9 +103,10 @@ public class ButtonSkript : MonoBehaviour
         {
             var count = GameObject.FindGameObjectsWithTag((newG.tag == "root") ? "root" : "tree")
                 .Where(tree => tree != newG)
+                .Where(tree => (newG.tag == "list" ? true : tree.GetComponent<LavelInfo>().GetConfirm()))
                 .Where(tree => tree.GetComponent<PolygonCollider2D>().OverlapPoint(newG.transform.position))
                 .Count();
-            if(count > 0)
+            if (count > 0)
             {
                 image.color = Color.green;
             }
