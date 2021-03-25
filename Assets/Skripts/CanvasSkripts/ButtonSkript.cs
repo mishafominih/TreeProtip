@@ -34,6 +34,7 @@ public class ButtonSkript : MonoBehaviour
                     return;
                 }
 
+                
                 if (newG.tag == "root") CheckAndSet("root");
                 else CheckAndSet("tree");
 
@@ -59,7 +60,7 @@ public class ButtonSkript : MonoBehaviour
                 {
                     var tt = Instantiate(target, newG.transform.position, new Quaternion());
                     tt.transform.SetParent(obj.transform.GetChild(0).transform);
-                    newG.GetComponent<TargetSkript>().target = tt;
+                    newG.GetComponent<TargetSkript>().SetTarget(tt);
                     rotate.SetActive(false);
                     revert.SetActive(false);
                     if (newG.tag == "tree")

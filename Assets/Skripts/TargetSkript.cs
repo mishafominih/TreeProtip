@@ -12,8 +12,20 @@ public class TargetSkript : MonoBehaviour
     void Start()
     {
         cam = CameraMove.Instance.GetComponent<Camera>();
+        if (target != null && gameObject.tag == "list") SetLink();
     }
 
+    private void SetLink()
+    {
+        var prefab = Resources.Load<GameObject>("list");
+        target.GetComponent<Link>().SetObject(gameObject, prefab);
+    }
+
+    public void SetTarget(GameObject target)
+    {
+        this.target = target;
+        if (gameObject.tag == "list") SetLink();
+    }
 
     void Update()
     {
@@ -33,7 +45,9 @@ public class TargetSkript : MonoBehaviour
             }
         }
         else
+        {
             newPos = target.transform.position;
+        }
         transform.position = new Vector3(newPos.x, newPos.y, 0);
     }
 }
