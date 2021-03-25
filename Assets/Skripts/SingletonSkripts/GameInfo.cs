@@ -6,6 +6,9 @@ public class GameInfo : MonoBehaviour
 {
     public static GameInfo Instance { get; private set; }
 
+    public static OnSummerEvent IsSummer;
+    public static OnWinterEvent IsWinter;
+
     public Stock sugar { get; private set; }
     public Stock water { get; private set; }
     public void Awake()
@@ -13,16 +16,7 @@ public class GameInfo : MonoBehaviour
         Instance = this;
         sugar = TreeSkript.Instance.GetStocks()[0];
         water = TreeSkript.Instance.GetStocks()[1];
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        IsSummer = new OnSummerEvent();
+        IsWinter = new OnWinterEvent();
     }
 }

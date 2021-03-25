@@ -48,6 +48,11 @@ public class PolutionListSkript : MonoBehaviour
         var deltaColor = (maxColor - minColor) * (1 - percentPolution);
         var newColor = (minColor + deltaColor) / maxColor;
         sprite.color = new Color(newColor, newColor, newColor);
+
+        if (RainSkript.Instance.IsRain())
+        {
+            timer = 0;
+        }
     }
 
     public float GetProfit(float value)

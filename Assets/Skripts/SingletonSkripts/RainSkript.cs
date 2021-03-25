@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class RainSkript : MonoBehaviour
 {
+    public static RainSkript Instance;
+
     public GameObject PrefabRain;
     public float Probability = 0.2f;
 
     private GameObject realRain;
     private float timer;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -42,4 +49,6 @@ public class RainSkript : MonoBehaviour
                 Destroy(realRain);
         }
     }
+
+    public bool IsRain() => realRain != null;
 }
