@@ -18,6 +18,7 @@ public class ButtonSkript : MonoBehaviour
 
     void Start()
     {
+        GameInfo.IsWinter.Subscribe(() => Null());
         GetComponent<Button>().onClick.AddListener(() =>
         {
             if (counter == 0)

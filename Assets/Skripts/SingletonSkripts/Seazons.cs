@@ -26,6 +26,8 @@ public class Seazons : MonoBehaviour
         Instance = this;
     }
 
+    public float GetTime() => timer;
+
     // Start is called before the first frame update
     void Start()
     {

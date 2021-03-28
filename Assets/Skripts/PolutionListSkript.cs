@@ -8,33 +8,30 @@ public class PolutionListSkript : MonoBehaviour
 {
     public float PolutionTime;
 
-    private SpriteRenderer sprite;
     private float timer = 0;
-    private Stock sugar;
-    private Stock water;
-    private const int maxColor = 255;
-    private const int minColor = 100;
+    private const float percentColorPolution = 0.4f;
     private float percentPolution;
+
+    private Vector3 autumn = new Vector3(255, 155, 0);
+
+    private SpriteRenderer sprite;
     private PolygonCollider2D collider;
     private TargetSkript target;
-    // Start is called before the first frame update
     void Start()
     {
         target = GetComponent<TargetSkript>();
         collider = GetComponent<PolygonCollider2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
-        sugar = GameInfo.Instance.sugar;
-        water = GameInfo.Instance.water;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (target.target == null) return;
-        if(timer < PolutionTime) timer += Time.deltaTime;
+        if (target.target.GetComponent<Fall>() != null) return;
+        if (timer < PolutionTime) timer += Time.deltaTime;
         else timer = PolutionTime;
 
-        if(Input.touchCount == 1)
+        if (Input.touchCount == 1)
         {
             var touch = CameraMove.Instance.GetComponent<Camera>()
                 .ScreenToWorldPoint(Input.GetTouch(0).position);
@@ -45,14 +42,30 @@ public class PolutionListSkript : MonoBehaviour
         }
 
         percentPolution = (timer / PolutionTime);
-        var deltaColor = (maxColor - minColor) * (1 - percentPolution);
-        var newColor = (minColor + deltaColor) / maxColor;
-        sprite.color = new Color(newColor, newColor, newColor);
+        CalculatePolution();
 
         if (RainSkript.Instance.IsRain())
         {
             timer = 0;
         }
+    }
+
+    private void CalculatePolution()
+    {
+        var startColor = getAutumnPolution();
+        var deltaColor = (1 - percentColorPolution) * (1 - percentPolution);
+        var newColor = startColor * (deltaColor + percentColorPolution)/255;
+        sprite.color = new Color(newColor.x, newColor.y, newColor.z);
+    }
+
+    private Vector3 getAutumnPolution()
+    {
+        var start = new Vector3(255, 255, 255);
+        var time = Seazons.Instance.WinterTime;
+        var timer = Seazons.Instance.GetTime();
+        var persent = timer / time;
+        var delta = (start - autumn) * (1-persent);
+        return autumn + delta;
     }
 
     public float GetProfit(float value)
