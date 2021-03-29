@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GrowList : MonoBehaviour
 {
-    public float speedMin = 0.0001f;
-    public float speedMax = 0.001f;
+    public float speedMin = 0.0005f;
+    public float speedMax = 0.005f;
 
     private float speed;
     // Start is called before the first frame update

@@ -11,15 +11,17 @@ public class Link : MonoBehaviour
         if (obj.tag == "list" && first)
         {
             first = false;
-            rotation = obj.transform.rotation;
             GameInfo.IsSummer.Subscribe(() =>
             {
-                obj = Instantiate(prefab, new Vector3(), rotation);
+                obj = Instantiate(prefab);
+                obj.GetComponent<SquareController>().enabled = false;
+                obj.transform.rotation = rotation;
                 obj.AddComponent<GrowList>();
                 obj.GetComponent<TargetSkript>().target = gameObject;
             });
             GameInfo.IsWinter.Subscribe(() =>
             {
+                rotation = obj.transform.rotation;
                 var fallPoint = Instantiate(Resources.Load<GameObject>("FallPoint"), transform.position, transform.rotation);
                 var target = obj.GetComponent<TargetSkript>();
                 fallPoint.GetComponent<Fall>().link = obj;
