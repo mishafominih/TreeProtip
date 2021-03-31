@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
+[Serializable]
 public class LavelInfo : MonoBehaviour
 {
     //уровень, после которого можно начать строить на данном элементе

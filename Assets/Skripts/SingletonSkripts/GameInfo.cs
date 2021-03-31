@@ -14,9 +14,12 @@ public class GameInfo : MonoBehaviour
     public void Awake()
     {
         Instance = this;
-        sugar = TreeSkript.Instance.GetStocks()[0];
-        water = TreeSkript.Instance.GetStocks()[1];
         IsSummer = new OnSummerEvent();
         IsWinter = new OnWinterEvent();
+        sugar = TreeSkript.Instance.GetStocks()[0];
+        water = TreeSkript.Instance.GetStocks()[1];
+    }
+    private void Start()
+    {
     }
 }

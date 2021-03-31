@@ -31,10 +31,10 @@ public class PolutionListSkript : MonoBehaviour
         if (timer < PolutionTime) timer += Time.deltaTime;
         else timer = PolutionTime;
 
-        if (Input.touchCount == 1)
+        if (Input.touchCount == 1 || Input.GetMouseButton(0))
         {
             var touch = CameraMove.Instance.GetComponent<Camera>()
-                .ScreenToWorldPoint(Input.GetTouch(0).position);
+                .ScreenToWorldPoint(GetTouch());
             if (collider.OverlapPoint(touch))
             {
                 timer = 0;
@@ -71,5 +71,12 @@ public class PolutionListSkript : MonoBehaviour
     public float GetProfit(float value)
     {
         return value * (1 - percentPolution);
+    }
+
+
+    private static Vector2 GetTouch()
+    {
+        if (Input.touchCount > 0) return Input.GetTouch(0).position;
+        return Input.mousePosition;
     }
 }

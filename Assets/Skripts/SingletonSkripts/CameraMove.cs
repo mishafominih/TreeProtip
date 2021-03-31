@@ -120,9 +120,9 @@ public class CameraMove : MonoBehaviour
 
     private void UpdatePosition()
     {
-        if (Input.touchCount == 1)
+        if (Input.touchCount == 1 || Input.GetMouseButton(0))
         {
-            var touch = Input.GetTouch(0).position;
+            var touch = GetTouch();
             
             if (Check(touch))
             {
@@ -162,6 +162,15 @@ public class CameraMove : MonoBehaviour
                 transform.position.z);
             previousDist = dist;
         }
+        else if(Input.GetAxis("Mouse ScrollWheel") != 0)
+        {
+            float mw = -Input.GetAxis("Mouse ScrollWheel");
+            cam.orthographicSize += mw;
+            transform.position = new Vector3(
+                transform.position.x,
+                transform.position.y + mw,
+                transform.position.z);
+        }
         else 
             firstDist = true;
     }
@@ -169,5 +178,12 @@ public class CameraMove : MonoBehaviour
     private bool Check(Vector2 touch)
     {
         return !Joistick.activeSelf;
+    }
+
+
+    private static Vector2 GetTouch()
+    {
+        if (Input.touchCount > 0) return Input.GetTouch(0).position;
+        return Input.mousePosition;
     }
 }

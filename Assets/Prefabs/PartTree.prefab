@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcbcc67f60db1849a6c747ee7ba04db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Step: 0.1
+  Step: 0.25
 --- !u!114 &8437106103442089119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc96576ae13b9b45aed24bd9b13c978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BuildLavel: 3
+  BuildLavelConsider: 1
 --- !u!1 &761349311724197517
 GameObject:
   m_ObjectHideFlags: 0

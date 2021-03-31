@@ -35,13 +35,12 @@ public class TargetSkript : MonoBehaviour
             if (Input.touchCount > 0)
             {
                 var touch = Input.GetTouch(0).position;
-                var area = GameObject.FindGameObjectWithTag("Area").
-                    GetComponent<PolygonCollider2D>();
-                if (area.OverlapPoint(touch))
-                {
-                    var pos = cam.ScreenToWorldPoint(touch);
-                    newPos = new Vector3(pos.x, pos.y + 0.5f, 0);
-                }
+                newPos = hit(newPos, touch);
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                var touch = Input.mousePosition;
+                newPos = hit(newPos, touch);
             }
         }
         else
@@ -49,5 +48,18 @@ public class TargetSkript : MonoBehaviour
             newPos = target.transform.position;
         }
         transform.position = new Vector3(newPos.x, newPos.y, 0);
+    }
+
+    private Vector3 hit(Vector3 newPos, Vector2 touch)
+    {
+        var area = GameObject.FindGameObjectWithTag("Area").
+                            GetComponent<PolygonCollider2D>();
+        if (area.OverlapPoint(touch))
+        {
+            var pos = cam.ScreenToWorldPoint(touch);
+            newPos = new Vector3(pos.x, pos.y + 0.5f, 0);
+        }
+
+        return newPos;
     }
 }

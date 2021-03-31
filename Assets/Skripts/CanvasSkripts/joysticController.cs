@@ -22,13 +22,14 @@ public class joysticController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.touchCount > 0)
+        if(Input.touchCount > 0 || Input.GetMouseButton(0))
         {
-            Vector3 touchPos = Input.GetTouch(0).position;
+            Vector3 touchPos = GetTouch();
             target = touchPos - transform.position;
+            
 
-            if(target.magnitude > 25 && 
-                GetComponent<BoxCollider2D>().bounds.Contains(Input.GetTouch(0).position))
+            if (target.magnitude > 25 &&
+                GetComponent<BoxCollider2D>().bounds.Contains(GetTouch()))
             {
                 touchMarker.transform.position = touchPos;
 
@@ -44,5 +45,11 @@ public class joysticController : MonoBehaviour
             touchMarker.transform.position = transform.position;
             //sqController.Angle = 0;
         }
+    }
+
+    private static Vector2 GetTouch()
+    {
+        if (Input.touchCount > 0) return Input.GetTouch(0).position;
+        return Input.mousePosition;
     }
 }
