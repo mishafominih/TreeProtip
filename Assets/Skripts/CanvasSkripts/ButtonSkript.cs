@@ -60,12 +60,13 @@ public class ButtonSkript : MonoBehaviour
                 if (obj.GetComponent<PolygonCollider2D>().OverlapPoint(newG.transform.position) && obj != newG)
                 {
                     var tt = Instantiate(target, newG.transform.position, new Quaternion());
-                    tt.transform.SetParent(obj.transform.GetChild(0).transform);
+                    tt.transform.SetParent(obj.transform);
                     newG.GetComponent<TargetSkript>().SetTarget(tt);
                     rotate.SetActive(false);
                     revert.SetActive(false);
                     if (newG.tag == "tree")
                     {
+                        newG.GetComponent<PartTreeGrow>().enabled = true;
                         foreach (var g in GameObject.FindGameObjectsWithTag("stock"))
                         {
                             g.GetComponent<Stock>().AddStart();

@@ -6,19 +6,17 @@ using UnityEngine.UI;
 public class listSkript : MonoBehaviour
 {
     public float delta = 0.1f;
-    public Stock sugar;
 
     private PolutionListSkript polution;
     void Start()
     {
         polution = GetComponent<PolutionListSkript>();
-        sugar = GameInfo.Instance.sugar;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(Seazons.Instance.IsSummer)
-            sugar.AddPart(polution.GetProfit(delta));
+            GameInfo.Instance.sugar.AddPart(polution.GetProfit(delta * Time.deltaTime));
     }
 }

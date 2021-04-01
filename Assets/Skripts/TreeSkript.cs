@@ -8,7 +8,6 @@ public class TreeSkript : MonoBehaviour
 {
     public static TreeSkript Instance { get; private set; }
 
-
     public float Step;
     private LavelInfo lavel;
 
@@ -45,14 +44,15 @@ public class TreeSkript : MonoBehaviour
 
     public void Grow()
     {
-        transform.localScale = new Vector3(
-            transform.localScale.x + Step,
-            transform.localScale.y + Step);
-        lavel.Increment();
         foreach (var g in GameObject.FindGameObjectsWithTag("stock"))
         {
             g.GetComponent<Stock>().MaxValue *= 1.2f;
-            lavel.Increment();
         }
+        lavel.Increment();
+
+        transform.localScale = new Vector3(
+            transform.localScale.x + Step,
+            transform.localScale.y + Step);
+        GameInfo.treeGrow.Publish();
     }
 }

@@ -18,10 +18,7 @@ public class GrowButtonSkript : MonoBehaviour
             {
                 if (water.TakePart(tree.GetCast().ToArray()[1]))
                 {
-                    foreach (var g in GameObject.FindGameObjectsWithTag("tree"))
-                    {
-                        g.GetComponent<TreeSkript>().Grow();
-                    }
+                    TreeSkript.Instance.Grow();
                 }
                 else
                 {

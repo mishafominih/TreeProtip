@@ -12,7 +12,6 @@ public class DataLoader : MonoBehaviour
     public List<GameObject> SavedObjects;
     public bool LoadingOnStart;
     public bool SavingOnEnd;
-    public GameObject test;
 
     private const string SAVE_KEY = "SavedData";
     private const char SEPARATOR = '|';
@@ -23,7 +22,7 @@ public class DataLoader : MonoBehaviour
         {
             var saveStr = PlayerPrefs.GetString(SAVE_KEY);
             var parse = saveStr.Split(new char[] { SEPARATOR }, StringSplitOptions.RemoveEmptyEntries);
-            for(int i = 0; i < parse.Length; i++)
+            for (int i = 0; i < parse.Length; i++)
             {
                 Object.Parse(parse[i], SavedObjects[i]);
             }
@@ -33,12 +32,16 @@ public class DataLoader : MonoBehaviour
     {
         if (!SavingOnEnd) return;
         var result = SavedObjects
-            .Select(x => new Object(x).ToString())//EditorJsonUtility.ToJson(x.transform, true))
+            .Select(x => new Object(x).ToString())
             .ToList();
-        var saveStr = "";
-        if(result.Count > 1)
-            saveStr = result.Aggregate((f, s) => SEPARATOR + s);
-        saveStr = result.First() + saveStr;
+
+        var saveStr = result.First();
+        for(int i = 1; i < result.Count; i++)
+        {
+            saveStr += SEPARATOR;
+            saveStr += result[i];
+        }
+        
         PlayerPrefs.SetString(SAVE_KEY, saveStr);
     }
 
@@ -58,7 +61,7 @@ public class DataLoader : MonoBehaviour
             var res = new StringBuilder();
             var gameObjectJson = EditorJsonUtility.ToJson(head, true);
             res.Append(gameObjectJson);
-            foreach(var component in components)
+            foreach (var component in components)
             {
                 res.Append(SEPARATOR);
                 var json = EditorJsonUtility.ToJson(component, true);
@@ -74,9 +77,11 @@ public class DataLoader : MonoBehaviour
             var components = strs.Skip(1).ToList();
             EditorJsonUtility.FromJsonOverwrite(head, prefab);
             var originComponents = prefab.GetComponents<Component>();
-            for(int i = 0; i < originComponents.Length; i++)
+            var test = new Component();
+            for (int i = 1; i < components.Count; i++)
             {
-                EditorJsonUtility.FromJsonOverwrite(components[i], originComponents[i]);
+                prefab.AddComponent(test.GetType());
+                EditorJsonUtility.FromJsonOverwrite(components[i], test);
             }
         }
     }

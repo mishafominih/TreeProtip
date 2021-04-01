@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class KorenSkript : MonoBehaviour
 {
+    public float Delta = 2;
     Stock sugar;
     Stock water;
     void Start()
@@ -18,7 +19,7 @@ public class KorenSkript : MonoBehaviour
     void Update()
     {
         var level = GetComponent<LavelInfo>().Lavel;
-        water.AddPart(0.01f * level * level);
+        water.AddPart(Delta * Time.deltaTime * level * level);
     }
 
     public List<float> GetCast()
