@@ -18,6 +18,14 @@ public class DataLoader : MonoBehaviour
     private void Start()
     {
         Instance = this;
+        if (LoadingOnStart)
+        {
+            var test = Instantiate(Resources.Load("1"));
+        }
+    }
+
+    private void LoadV1()
+    {
         if (LoadingOnStart && PlayerPrefs.HasKey(SAVE_KEY))
         {
             var saveStr = PlayerPrefs.GetString(SAVE_KEY);
@@ -28,7 +36,17 @@ public class DataLoader : MonoBehaviour
             }
         }
     }
+
     private void OnApplicationQuit()
+    {
+        if (SavingOnEnd)
+        {
+            PrefabUtility.CreatePrefab("Assets/Resources/1.prefab", SavedObjects[0]);
+        }
+        //SaveV1();
+    }
+
+    private void SaveV1()
     {
         if (!SavingOnEnd) return;
         var result = SavedObjects
@@ -36,12 +54,12 @@ public class DataLoader : MonoBehaviour
             .ToList();
 
         var saveStr = result.First();
-        for(int i = 1; i < result.Count; i++)
+        for (int i = 1; i < result.Count; i++)
         {
             saveStr += SEPARATOR;
             saveStr += result[i];
         }
-        
+
         PlayerPrefs.SetString(SAVE_KEY, saveStr);
     }
 

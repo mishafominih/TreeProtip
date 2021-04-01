@@ -18,6 +18,7 @@ public class Link : MonoBehaviour
                 obj.transform.rotation = rotation;
                 obj.AddComponent<GrowList>();
                 obj.GetComponent<TargetSkript>().target = gameObject;
+                obj.transform.SetParent(transform);
             });
             GameInfo.IsWinter.Subscribe(() =>
             {
@@ -26,6 +27,7 @@ public class Link : MonoBehaviour
                 var target = obj.GetComponent<TargetSkript>();
                 fallPoint.GetComponent<Fall>().link = obj;
                 target.target = fallPoint;
+                obj.transform.SetParent(fallPoint.transform);
             });
         }
     }

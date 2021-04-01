@@ -45,9 +45,9 @@ public class TargetSkript : MonoBehaviour
         }
         else
         {
-            newPos = target.transform.position;
+            newPos = new Vector3();
         }
-        transform.position = new Vector3(newPos.x, newPos.y, 0);
+        transform.localPosition = new Vector3(newPos.x, newPos.y, 0);
     }
 
     private Vector3 hit(Vector3 newPos, Vector2 touch)

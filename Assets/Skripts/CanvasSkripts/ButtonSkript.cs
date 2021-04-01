@@ -61,6 +61,7 @@ public class ButtonSkript : MonoBehaviour
                 {
                     var tt = Instantiate(target, newG.transform.position, new Quaternion());
                     tt.transform.SetParent(obj.transform);
+                    newG.transform.SetParent(tt.transform);
                     newG.GetComponent<TargetSkript>().SetTarget(tt);
                     rotate.SetActive(false);
                     revert.SetActive(false);
