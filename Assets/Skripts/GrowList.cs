@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class GrowList : MonoBehaviour
 {
-    public float speedMin = 0.0005f;
-    public float speedMax = 0.005f;
+    public float MaxScale;
+    public float speedMin = 0.1f;
+    public float speedMax = 1f;
 
     private float speed;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +22,11 @@ public class GrowList : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.localScale.x < 1)
+        MaxScale = GetComponentInParent<Link>().GetScale();
+        if(transform.localScale.x < MaxScale)
         {
-            transform.localScale += new Vector3(speed, speed, speed);
+            var delta = speed * Time.deltaTime;
+            transform.localScale += new Vector3(delta, delta, delta);
         }
         else
         {

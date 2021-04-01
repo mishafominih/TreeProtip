@@ -13,9 +13,17 @@ public class LavelInfo : MonoBehaviour
 
     public bool BuildLavelConsider = true;
 
-    private void Start()
+    private void Awake()
     {
         Lavel = 1;
+        GameInfo.saveData.Subscribe(() =>
+        {
+
+        });
+        GameInfo.loadData.Subscribe(() =>
+        {
+
+        });
     }
 
     public void Increment()

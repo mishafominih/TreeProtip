@@ -73,8 +73,7 @@ public class ButtonSkript : MonoBehaviour
                             g.GetComponent<Stock>().AddStart();
                         }
                     }
-                    if(newG.tag == "list")
-                        newG.GetComponent<SquareController>().enabled = false;
+                    newG.GetComponent<SquareController>().enabled = false;
                     counter = 1;
                     newG = null;
                     break;

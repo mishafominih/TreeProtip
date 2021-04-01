@@ -6,6 +6,9 @@ public class Link : MonoBehaviour
 {
     private bool first = true;
     private Quaternion rotation;
+    private float scale = 1;
+
+    public float GetScale() => scale;
     public void SetObject(GameObject obj, GameObject prefab)
     {
         if (obj.tag == "list" && first)
@@ -28,6 +31,18 @@ public class Link : MonoBehaviour
                 fallPoint.GetComponent<Fall>().link = obj;
                 target.target = fallPoint;
                 obj.transform.SetParent(fallPoint.transform);
+            });
+            GameInfo.treeGrow.Subscribe(() =>
+            {
+                var step = TreeSkript.Instance.Step;
+                var size = TreeSkript.Instance.transform.localScale.x;
+                var oldSize = size - step;
+                var percent = size / oldSize;
+                scale = scale / percent;
+                if(obj != null)
+                {
+                    obj.transform.localScale = new Vector3(scale, scale, scale);
+                }
             });
         }
     }

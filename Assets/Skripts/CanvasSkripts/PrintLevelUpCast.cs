@@ -6,17 +6,19 @@ using UnityEngine.UI;
 
 public class PrintLevelUpCast : MonoBehaviour
 {
-    public GameObject g;
     public bool isTree;
     public int index;
 
     Text text;
     Stock sugar;
     Stock water;
+    GameObject g;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (isTree) g = TreeSkript.Instance.gameObject;
+        else g = KorenSkript.Instance.gameObject;
         text = GetComponent<Text>();
         sugar = GameInfo.Instance.sugar;
         water = GameInfo.Instance.water;

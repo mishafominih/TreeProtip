@@ -6,9 +6,15 @@ using UnityEngine.UI;
 
 public class KorenSkript : MonoBehaviour
 {
+    public static KorenSkript Instance;
     public float Delta = 2;
     Stock sugar;
     Stock water;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         sugar = GameInfo.Instance.sugar;
