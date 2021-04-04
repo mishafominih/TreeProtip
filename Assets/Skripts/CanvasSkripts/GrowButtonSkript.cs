@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class GrowButtonSkript : MonoBehaviour
 {
-    public TreeSkript tree;
     // Start is called before the first frame update
     void Start()
     {
-        var sugar = GameInfo.Instance.sugar;
-        var water = GameInfo.Instance.water;
         GetComponent<Button>().onClick.AddListener(() =>
         {
+            var tree = TreeSkript.Instance;
+            var sugar = GameInfo.Instance.sugar;
+            var water = GameInfo.Instance.water;
             if (sugar.TakePart(tree.GetCast().ToArray()[0]))
             {
                 if (water.TakePart(tree.GetCast().ToArray()[1]))

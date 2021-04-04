@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class UpdateValue : MonoBehaviour
 {
-    public Stock stock;
+    public bool isSugar;
+
+    private Stock stock;
     Text text;
 
     private void Start()
@@ -15,8 +17,15 @@ public class UpdateValue : MonoBehaviour
 
     void Update()
     {
+        stock = getStock();
         text.text = ((int)stock.Get()).ToString();
         if (stock.IsMax()) text.color = Color.red;
         else text.color = Color.black;
+    }
+
+    private Stock getStock()
+    {
+        if (isSugar) return GameInfo.Instance.sugar;
+        return GameInfo.Instance.water;
     }
 }

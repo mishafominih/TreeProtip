@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d60ef6ba8acfb45899df0b987cb692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Delta: 2
 --- !u!61 &4650936966368352018
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165,3 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc96576ae13b9b45aed24bd9b13c978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BuildLavel: 3
+  Lavel: 1
+  BuildLavelConsider: 1

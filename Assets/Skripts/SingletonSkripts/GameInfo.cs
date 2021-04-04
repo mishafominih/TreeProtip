@@ -24,6 +24,11 @@ public class GameInfo : MonoBehaviour
         treeGrow = new TreeGrow();
         sugar = TreeSkript.Instance.GetStocks()[0];
         water = TreeSkript.Instance.GetStocks()[1];
+        loadData.Subscribe(() =>
+        {
+            sugar = TreeSkript.Instance.GetStocks()[0];
+            water = TreeSkript.Instance.GetStocks()[1];
+        });
     }
     private void Start()
     {
