@@ -13,6 +13,7 @@ public class Link : MonoBehaviour
     {
         if (obj.tag == "list" && first)
         {
+            scale = obj.transform.localScale.x;
             first = false;
             GameInfo.IsSummer.Subscribe(() =>
             {
