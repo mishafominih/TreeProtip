@@ -1172,7 +1172,7 @@ PrefabInstance:
     - target: {fileID: 1978145931404481545, guid: 63ff46a83d5386b42b25ebef91822534,
         type: 3}
       propertyPath: LoadingOnStart
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1978145931404481545, guid: 63ff46a83d5386b42b25ebef91822534,
         type: 3}
@@ -1193,7 +1193,7 @@ PrefabInstance:
     - target: {fileID: 1978145931404481545, guid: 63ff46a83d5386b42b25ebef91822534,
         type: 3}
       propertyPath: SavingOnEnd
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1978145931404481545, guid: 63ff46a83d5386b42b25ebef91822534,
         type: 3}

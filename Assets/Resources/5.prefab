@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc0cd76b8b30534aa33ab62185e330f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SummerTime: 2
+  SummerTime: 25
   SummerBackGround: {fileID: 21300000, guid: 7e15048006259224aa1ff52d1bdbcc5e, type: 3}
   SummerBackGroundDown: {fileID: 21300000, guid: 641703bcf22cdc14884db3dadae00663,
     type: 3}
