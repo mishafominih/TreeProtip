@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/LoadLevel.unity
     guid: f93cd5671b269224f8d4ae99ab473b83
+  - enabled: 1
+    path: Assets/Scenes/AddItem.unity
+    guid: 94fca78b2af4568418d9a1e278f86442
   m_configObjects: {}

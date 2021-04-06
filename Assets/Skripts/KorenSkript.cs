@@ -44,7 +44,7 @@ public class KorenSkript : MonoBehaviour
             if (water.Get() >= GetCast()[1])
             {
                 sugar.TakePart(GetCast()[0]);
-                sugar.TakePart(GetCast()[1]);
+                water.TakePart(GetCast()[1]);
                 foreach (var root in GameObject.FindGameObjectsWithTag("root"))
                 {
                     root.GetComponent<KorenGrowSkript>().Grow();

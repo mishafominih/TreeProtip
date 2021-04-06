@@ -9,38 +9,21 @@ public class ButtonSkript : MonoBehaviour
     public GameObject target;
     public GameObject rotate;
     public GameObject revert;
-    public GameObject HidesSecond;
-    public GameObject HidesFirst;
+    public List<GameObject> Hides;
+    public List<GameObject> Actives;
 
 
     GameObject newG;
-    int counter = 0;
 
     void Start()
     {
         GameInfo.IsWinter.Subscribe(() => Null());
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            if (counter == 0)
-            {
-                Do(true);
-                counter++;
-            }
-            else
-            {
-                if (newG == null)
-                {
-                    Do(false);
-                    counter = 0;
-                    return;
-                }
+            if (newG.tag == "root") CheckAndSet("root");
+            else CheckAndSet("tree");
 
-                
-                if (newG.tag == "root") CheckAndSet("root");
-                else CheckAndSet("tree");
-
-                return;
-            }
+            return;
         });
     }
 
@@ -63,8 +46,7 @@ public class ButtonSkript : MonoBehaviour
                     tt.transform.SetParent(obj.transform);
                     newG.transform.SetParent(tt.transform);
                     newG.GetComponent<TargetSkript>().SetTarget(tt);
-                    rotate.SetActive(false);
-                    revert.SetActive(false);
+                    hide();
                     if (newG.tag == "tree")
                     {
                         newG.GetComponent<PartTreeGrow>().enabled = true;
@@ -74,17 +56,19 @@ public class ButtonSkript : MonoBehaviour
                         }
                     }
                     newG.GetComponent<SquareController>().enabled = false;
-                    counter = 1;
                     newG = null;
                     break;
                 }
         }
     }
 
-    private void Do(bool bb)
+    private void hide()
     {
-        HidesSecond.SetActive(!bb);
-        HidesFirst.SetActive(bb);
+        rotate.SetActive(false);
+        revert.SetActive(false);
+        gameObject.SetActive(false);
+        foreach (var g in Hides) g.SetActive(false);
+        foreach (var g in Actives) g.SetActive(true);
     }
 
     public void Click(GameObject g)
@@ -102,7 +86,7 @@ public class ButtonSkript : MonoBehaviour
     {
         var image = GetComponent<Image>();
         image.color = Color.white;
-        if (counter != 0 && newG != null)
+        if (newG != null)
         {
             var count = GameObject.FindGameObjectsWithTag((newG.tag == "root") ? "root" : "tree")
                 .Where(tree => tree != newG)
