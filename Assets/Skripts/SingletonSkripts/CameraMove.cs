@@ -11,7 +11,6 @@ public class CameraMove : MonoBehaviour
     public float ControlX = 3;
     public float UpY = 3;
     public float ControlSize = 8;
-    public GameObject Joistick;
     public float MidleY = -7;
     public float DownY = -7;
 
@@ -177,7 +176,9 @@ public class CameraMove : MonoBehaviour
 
     private bool Check(Vector2 touch)
     {
-        return !Joistick.activeSelf;
+        var joystick = joysticController.Instance;
+        if (joystick == null) return true;
+        return !joystick.gameObject.activeSelf;
     }
 
 

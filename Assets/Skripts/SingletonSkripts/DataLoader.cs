@@ -23,6 +23,7 @@ public class DataLoader : MonoBehaviour
         {
             foreach (var saved in SavedObjects)
                 Destroy(saved);
+            SavedObjects.Clear();
             var count = PlayerPrefs.GetInt(SAVE_KEY_COUNT);
             var json = PlayerPrefs.GetString(SAVE_KEY_DATA);
             var jsonList = SaveHelper.GetJsonList(json);
@@ -30,6 +31,7 @@ public class DataLoader : MonoBehaviour
             {
                 var obj = Resources.Load(i.ToString());
                 var gameObj = Instantiate(obj);
+                SavedObjects.Add((GameObject)gameObj);
                 //SaveHelper.ParseToGameObject(jsonList[i], (GameObject)gameObj);
             }
             GameInfo.loadData.Publish();

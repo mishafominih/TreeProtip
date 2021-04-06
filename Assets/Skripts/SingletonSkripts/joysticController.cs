@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class joysticController : MonoBehaviour
 {
+    public static joysticController Instance;
     public GameObject touchMarker;
     public SquareController sqController;
 
@@ -13,6 +14,12 @@ public class joysticController : MonoBehaviour
     private float first;
     Vector3 target;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         touchMarker.transform.position = transform.position;
