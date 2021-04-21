@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 [Serializable]
-public class LavelInfo : MonoBehaviour
+public class LavelInfo : MonoBehaviourSave
 {
     //уровень, после которого можно начать строить на данном элементе
     public int BuildLavel = 3;
@@ -13,24 +13,17 @@ public class LavelInfo : MonoBehaviour
 
     public bool BuildLavelConsider = true;
 
-    private void Start()
+    public override string SaveData()
     {
-        GameInfo.RegisterSaveEvents(
-        stream =>
-        {
-            stream.Append(Lavel);
-            stream.Append(" ");
-            stream.Append(BuildLavel);
-            stream.Append(" ");
-            stream.Append(BuildLavelConsider);
-        },
-        data =>
-        {
-            var info = data.Split(' ');
-            Lavel = int.Parse(info[0]);
-            BuildLavel = int.Parse(info[1]);
-            BuildLavelConsider = bool.Parse(info[2]);
-        });
+        return Lavel + " " + BuildLavel + " " + BuildLavelConsider;
+    }
+
+    public override void LoadData(string data)
+    {
+        var info = data.Split(' ');
+        Lavel = int.Parse(info[0]);
+        BuildLavel = int.Parse(info[1]);
+        BuildLavelConsider = bool.Parse(info[2]);
     }
 
     public void Increment()

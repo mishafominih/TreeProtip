@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stock : MonoBehaviour
+public class Stock : MonoBehaviourSave
 {
     public float MaxValue;
 
@@ -12,19 +12,19 @@ public class Stock : MonoBehaviour
     private void Start()
     {
         StartMaxValue = MaxValue;
-        GameInfo.RegisterSaveEvents(
-        stream =>
-        {
-            stream.Append(value);
-            stream.Append(" ");
-            stream.Append(MaxValue);
-        },
-        data =>
-        {
-            var info = data.Split(' ');
-            value = float.Parse(info[0]);
-            MaxValue = float.Parse(info[1]);
-        });
+        
+    }
+
+    public override string SaveData()
+    {
+        return value + " " + MaxValue;
+    }
+
+    public override void LoadData(string data)
+    {
+        var info = data.Split(' ');
+        value = float.Parse(info[0]);
+        MaxValue = float.Parse(info[1]);
     }
 
     public bool TakePart(float part)

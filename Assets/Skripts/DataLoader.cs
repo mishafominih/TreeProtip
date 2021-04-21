@@ -19,32 +19,21 @@ public class DataLoader : MonoBehaviour
     public bool SavingOnEnd;
 
     private const string SAVE_KEY_DATA = "SavedData";
-    private const string SAVE_KEY_INFO = "SavedInfo";
-    private const char INFO_SEPARATOR = '|';
     private void Start()
     {
         Instance = this;
         if (LoadingOnStart)
         {
-            StartCoroutine(Load());
-        }
-    }
+            var json = PlayerPrefs.GetString(SAVE_KEY_DATA);
+            var jsonList = SaveHelper.GetJsonList(json);
 
-    private IEnumerator Load()
-    {
-        //yield return new WaitForSeconds(1);
-        var json = PlayerPrefs.GetString(SAVE_KEY_DATA);
-        var jsonList = SaveHelper.GetJsonList(json);
-
-        for (int i = 0; i < jsonList.Count; i++)
-        {
-            var jsonObj = jsonList[i];
-            var baseGameObject = SavedObjects[i];
-            SaveHelper.ParseToGameObject(jsonObj, baseGameObject);
+            for (int i = 0; i < jsonList.Count; i++)
+            {
+                var jsonObj = jsonList[i];
+                var baseGameObject = SavedObjects[i];
+                SaveHelper.ParseToGameObject(jsonObj, baseGameObject);
+            }
         }
-        //yield return new WaitForSeconds(1);
-        GameInfo.Load(PlayerPrefs.GetString(SAVE_KEY_INFO), INFO_SEPARATOR);
-        yield return new WaitForSeconds(1);
     }
 
     private void OnApplicationQuit()
@@ -56,9 +45,6 @@ public class DataLoader : MonoBehaviour
     {
         if (SavingOnEnd)
         {
-            var info = GameInfo.Save(INFO_SEPARATOR);
-            PlayerPrefs.SetString(SAVE_KEY_INFO, info);
-
             var jsonList = new List<string>();
             for (int i = 0; i < SavedObjects.Count; i++)
             {
@@ -102,6 +88,13 @@ public class DataLoader : MonoBehaviour
             WriteVector3(res, localScale);
 
             res.Append(gameObject.transform.childCount);
+
+            var saveComponents = gameObject.GetComponents<MonoBehaviourSave>();
+            foreach(var component in saveComponents)
+            {
+                res.Append(SPESIAL_INFO_SEPARATOR);
+                res.Append(component.SaveData());
+            }
 
             for (int i = 0; i < gameObject.transform.childCount; i++)
             {
@@ -152,6 +145,13 @@ public class DataLoader : MonoBehaviour
             parent.transform.localPosition = pos;
             parent.transform.rotation = Quaternion.Euler(rot);
             parent.transform.localScale = scale;
+
+            var saveComponent = parent.GetComponents<MonoBehaviourSave>();
+            for(int i =0; i < saveComponent.Length; i++)
+            {
+                var data = info[5 + i];
+                saveComponent[i].LoadData(data);
+            }
 
             for (int i = 0; i < childCount; i++)
             {

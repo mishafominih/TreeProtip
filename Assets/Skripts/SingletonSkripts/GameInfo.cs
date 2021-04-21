@@ -11,24 +11,6 @@ public class GameInfo : MonoBehaviour
     public static OnSummerEvent IsSummer;
     public static OnWinterEvent IsWinter;
     public static TreeGrow treeGrow;
-    private static SaveData saveData;
-    private static LoadData loadData;
-
-    public static void RegisterSaveEvents(Action<StringBuilder> save, Action<string> load)
-    {
-        saveData.Subscribe(save);
-        loadData.Subscribe(load);
-    }
-
-    public static void Load(string data, char separator)
-    {
-        loadData.Publish(data, separator);
-    }
-
-    public static string Save(char separator)
-    {
-        return saveData.Publish(separator);
-    }
 
     public Stock sugar { get; private set; }
     public Stock water { get; private set; }
@@ -37,8 +19,6 @@ public class GameInfo : MonoBehaviour
         Instance = this;
         IsSummer = new OnSummerEvent();
         IsWinter = new OnWinterEvent();
-        saveData = new SaveData();
-        loadData = new LoadData();
         treeGrow = new TreeGrow();
     }
 

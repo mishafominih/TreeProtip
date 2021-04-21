@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Task : MonoBehaviour
+public class Task : MonoBehaviourSave
 {
     public int Lavel;
     public GameObject timeMassage;
@@ -17,22 +17,23 @@ public class Task : MonoBehaviour
     {
         canvas = GameObject.FindGameObjectWithTag("Canvas");
         GetTask();
-        GameInfo.RegisterSaveEvents(
-        stream =>
-        {
-            stream.Append(tasks[0]);
-            stream.Append(".");
-            stream.Append(tasks[1]);
-            stream.Append(".");
-            stream.Append(tasks[2]);
-        },
-        data =>
-        {
-            var info = data.Split('.');
-            tasks[0] = int.Parse(info[0]);
-            tasks[1] = int.Parse(info[1]);
-            tasks[2] = int.Parse(info[2]);
-        });
+    }
+
+    public override string SaveData()
+    {
+        return tasks[0] + "." + tasks[1] + "." + tasks[2];
+    }
+
+    public override void LoadData(string data)
+    {
+        var info = data
+            .Split('.')
+            .Select(x => int.Parse(x))
+            .ToArray();
+        tasks[0] = info[0];
+        tasks[1] = info[1];
+        tasks[2] = info[2];
+        SetTask();
     }
 
     private void GetTask()

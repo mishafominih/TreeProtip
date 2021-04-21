@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnowSkript : MonoBehaviour
+public class SnowSkript : MonoBehaviourSave
 {
-    private void Awake()
+    public override string SaveData()
     {
+        return gameObject.activeSelf.ToString();
+    }
+
+    public override void LoadData(string data)
+    {
+        gameObject.SetActive(bool.Parse(data));
     }
 
     private void OnDisable()
@@ -15,13 +21,6 @@ public class SnowSkript : MonoBehaviour
 
     void Start()
     {
-        GameInfo.RegisterSaveEvents(stream =>
-        {
-            stream.Append(gameObject.activeSelf);
-        }, data =>
-        {
-            gameObject.SetActive(bool.Parse(data));
-        });
         GameInfo.IsSummer.Subscribe(() =>
         {
             gameObject.SetActive(false);

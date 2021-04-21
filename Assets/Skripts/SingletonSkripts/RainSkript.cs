@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RainSkript : MonoBehaviour
+public class RainSkript : MonoBehaviourSave
 {
     public static RainSkript Instance;
 
@@ -15,25 +15,21 @@ public class RainSkript : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        GameInfo.RegisterSaveEvents(stream =>
-        {
-            stream.Append(Probability);
-            stream.Append(" ");
-            stream.Append(IsRain());
-        }, data =>
-        {
-            var info = data.Split(' ');
-            Probability = float.Parse(info[0]);
-            if (bool.Parse(info[1]))
-            {
-                CreateRain();
-            }
-        });
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public override string SaveData()
     {
+        return Probability + " " + IsRain();
+    }
+
+    public override void LoadData(string data)
+    {
+        var info = data.Split(' ');
+        Probability = float.Parse(info[0]);
+        if (bool.Parse(info[1]))
+        {
+            CreateRain();
+        }
     }
 
     // Update is called once per frame
