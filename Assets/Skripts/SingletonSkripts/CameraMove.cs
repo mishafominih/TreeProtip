@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraMove : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class CameraMove : MonoBehaviour
     public float ControlX = 3;
     public float UpY = 3;
     public float ControlSize = 8;
-    public float MidleY = -7;
     public float DownY = -7;
 
     private Camera cam;
@@ -19,8 +19,6 @@ public class CameraMove : MonoBehaviour
     private bool firstTouch = true;
     private float previousDist;
     private bool firstDist  = true;
-    private bool isUp = true;
-    private bool isAnimation = false;
     //private float distance;
 
 
@@ -38,50 +36,9 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAnimation)
-            LogicControl();
-        else
-        {
-            UpdatePosition();//изменяет позицию
-            UpdateSize();//изменяет массштаб
-            if (isUp)
-                Control(UpY, 0);//контроллирует нахождение камеры в указанных пределах
-            else
-            {
-                Control(MidleY, DownY);//контроллирует нахождение камеры в указанных пределах
-                if (cam.orthographicSize > 5) cam.orthographicSize = 5;
-            }
-        }
-    }
-
-    private void LogicControl()
-    {
-        if (isUp)
-            if (transform.position.y < 0)
-                ControlAnim(0.5f);
-            else
-                isAnimation = false;
-        else
-            if (transform.position.y > MidleY)
-            ControlAnim(-0.5f);
-        else
-            isAnimation = false;
-    }
-
-    private void ControlAnim(float d)
-    {
-        if (transform.position.x != 0)
-            transform.position = new Vector3(0, transform.position.y, transform.position.z);
-        if (Mathf.Abs(cam.orthographicSize - 5) < 0.15f) cam.orthographicSize = 5;
-        if (cam.orthographicSize < 5) cam.orthographicSize += 0.1f;
-        else if (cam.orthographicSize > 5) cam.orthographicSize -= 0.1f;
-        else transform.position += new Vector3(0, d, 0);
-    }
-
-    public void Switch()
-    {
-        isUp = !isUp;
-        isAnimation = true;
+        UpdatePosition();//изменяет позицию
+        UpdateSize();//изменяет массштаб
+        Control(UpY, DownY);//контроллирует нахождение камеры в указанных пределах
     }
 
     private void Control(float upY, float downY)
@@ -178,7 +135,7 @@ public class CameraMove : MonoBehaviour
     {
         var joystick = joysticController.Instance;
         if (joystick == null) return true;
-        return !joystick.gameObject.activeSelf;
+        return !joystick.GetComponent<Collider2D>().OverlapPoint(touch);
     }
 
 

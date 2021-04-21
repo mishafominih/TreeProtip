@@ -586,6 +586,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 292257440}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &335673376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 787383157333517360, guid: b8c717c054e42f34687e6ddd7becf65b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1679701782}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &335884122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1415,6 +1421,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8632434378259602443, guid: 6d2ba27df1c5d44439c8025520263ad3,
     type: 3}
   m_PrefabInstance: {fileID: 917389318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &944193371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 787383157873000825, guid: b8c717c054e42f34687e6ddd7becf65b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1679701782}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1078764843
 PrefabInstance:
@@ -2299,6 +2311,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 787383156841218304, guid: b8c717c054e42f34687e6ddd7becf65b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 787383156841218304, guid: b8c717c054e42f34687e6ddd7becf65b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 335673376}
+    - target: {fileID: 787383156841218304, guid: b8c717c054e42f34687e6ddd7becf65b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 944193371}
     - target: {fileID: 787383157333517360, guid: b8c717c054e42f34687e6ddd7becf65b,
         type: 3}
       propertyPath: m_IsActive
@@ -2954,7 +2981,6 @@ MonoBehaviour:
   ControlX: 3
   UpY: 3
   ControlSize: 7
-  MidleY: -7
   DownY: -7
 --- !u!81 &2138653982
 AudioListener:
