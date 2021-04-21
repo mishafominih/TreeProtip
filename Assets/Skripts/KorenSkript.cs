@@ -8,8 +8,6 @@ public class KorenSkript : MonoBehaviour
 {
     public static KorenSkript Instance;
     public float Delta = 2;
-    Stock sugar;
-    Stock water;
 
     private void Awake()
     {
@@ -17,15 +15,13 @@ public class KorenSkript : MonoBehaviour
     }
     void Start()
     {
-        sugar = GameInfo.Instance.sugar;
-        water = GameInfo.Instance.water;
     }
 
     // Update is called once per frame
     void Update()
     {
         var level = GetComponent<LavelInfo>().Lavel;
-        water.AddPart(Delta * Time.deltaTime * level * level);
+        GameInfo.Instance.water.AddPart(Delta * Time.deltaTime * level * level);
     }
 
     public List<float> GetCast()
@@ -40,8 +36,10 @@ public class KorenSkript : MonoBehaviour
 
     public void Grow()
     {
-        if (sugar.Get() >= GetCast()[0]){
-            if (water.Get() >= GetCast()[1])
+        var sugar = GameInfo.Instance.sugar;
+        var water = GameInfo.Instance.water;
+        if (sugar.GetValue() >= GetCast()[0]){
+            if (water.GetValue() >= GetCast()[1])
             {
                 sugar.TakePart(GetCast()[0]);
                 water.TakePart(GetCast()[1]);

@@ -45,12 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc0cd76b8b30534aa33ab62185e330f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SummerTime: 25
-  SummerBackGround: {fileID: 21300000, guid: 7e15048006259224aa1ff52d1bdbcc5e, type: 3}
+  SummerTime: 50
+  SummerBackGround: {fileID: 21300000, guid: d3b234daedf4ebe47b0199188a678bcb, type: 3}
   SummerBackGroundDown: {fileID: 21300000, guid: 641703bcf22cdc14884db3dadae00663,
     type: 3}
-  WinterTime: 150
-  WinterBackGround: {fileID: 21300000, guid: a0d105127b1d681429656c74be366cdb, type: 3}
+  WinterTime: 200
+  WinterBackGround: {fileID: 21300000, guid: c08d1db40cff634469392ae82e037775, type: 3}
   WinterBackGroundDown: {fileID: 21300000, guid: 0cefc39586731594095a43a37fa67121,
     type: 3}
 --- !u!1 &1045407970
@@ -78,8 +78,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045407970}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.0756037, y: 3.1372323, z: 2}
-  m_LocalScale: {x: 3.755025, y: 13.971362, z: 1}
+  m_LocalPosition: {x: -2.0756037, y: 3.74, z: 2}
+  m_LocalScale: {x: 3.7550251, y: 13.971361, z: 1}
   m_Children: []
   m_Father: {fileID: 744206067}
   m_RootOrder: 0
@@ -123,12 +123,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7e15048006259224aa1ff52d1bdbcc5e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3b234daedf4ebe47b0199188a678bcb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 4.29, y: 1.35}
+  m_Size: {x: 4.3, y: 1.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

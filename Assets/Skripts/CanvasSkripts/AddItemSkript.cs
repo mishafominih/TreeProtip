@@ -25,8 +25,13 @@ public class AddItemSkript : MonoBehaviour
         water = GameInfo.Instance.water;
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            if (!Seazons.Instance.IsSummer && !IsWinterBuild) return;
-            if (sugar.Get() >= GetCast()[0] && water.Get() >= GetCast()[1] && btn.IsFree())
+            if (!Seazons.Instance.IsSummer && !IsWinterBuild)
+            {
+                btn.hide();
+                return;
+            }
+
+            if (sugar.GetValue() >= GetCast()[0] && water.GetValue() >= GetCast()[1] && btn.IsFree())
             {
                 sugar.TakePart(GetCast()[0]);
                 water.TakePart(GetCast()[1]);

@@ -1,0 +1,1 @@
+<GameObject xmlns="http://schemas.datacontract.org/2004/07/UnityEngine" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><hideFlags>None</hideFlags><name>tree</name><active>true</active><isStatic>false</isStatic><layer>0</layer><tag>tree</tag></GameObject>

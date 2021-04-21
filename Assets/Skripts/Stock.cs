@@ -12,6 +12,19 @@ public class Stock : MonoBehaviour
     private void Start()
     {
         StartMaxValue = MaxValue;
+        GameInfo.RegisterSaveEvents(
+        stream =>
+        {
+            stream.Append(value);
+            stream.Append(" ");
+            stream.Append(MaxValue);
+        },
+        data =>
+        {
+            var info = data.Split(' ');
+            value = float.Parse(info[0]);
+            MaxValue = float.Parse(info[1]);
+        });
     }
 
     public bool TakePart(float part)
@@ -27,7 +40,7 @@ public class Stock : MonoBehaviour
         Control();
     }
 
-    public float Get() => value;
+    public float GetValue() => value;
 
     public void AddStart() => MaxValue += StartMaxValue;
 

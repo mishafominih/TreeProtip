@@ -13,6 +13,26 @@ public class LavelInfo : MonoBehaviour
 
     public bool BuildLavelConsider = true;
 
+    private void Start()
+    {
+        GameInfo.RegisterSaveEvents(
+        stream =>
+        {
+            stream.Append(Lavel);
+            stream.Append(" ");
+            stream.Append(BuildLavel);
+            stream.Append(" ");
+            stream.Append(BuildLavelConsider);
+        },
+        data =>
+        {
+            var info = data.Split(' ');
+            Lavel = int.Parse(info[0]);
+            BuildLavel = int.Parse(info[1]);
+            BuildLavelConsider = bool.Parse(info[2]);
+        });
+    }
+
     public void Increment()
     {
         Lavel++;

@@ -24,10 +24,11 @@ public class DropSkript : MonoBehaviour
             if (objects.Count == 2 || 
                 objects.First().GetComponent<LavelInfo>().Lavel - lavel > 0)
             {
+                var size = (transform.localScale.x + transform.localScale.y) / 2;
                 var sugar = GameInfo.Instance.sugar;
                 var water = GameInfo.Instance.water;
-                sugar.AddPart(Sugar);
-                water.AddPart(Water);
+                sugar.AddPart(Sugar * size);
+                water.AddPart(Water * size);
                 Destroy(gameObject);
             }
         }

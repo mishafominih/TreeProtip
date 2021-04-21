@@ -15,12 +15,25 @@ public class RainSkript : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        GameInfo.RegisterSaveEvents(stream =>
+        {
+            stream.Append(Probability);
+            stream.Append(" ");
+            stream.Append(IsRain());
+        }, data =>
+        {
+            var info = data.Split(' ');
+            Probability = float.Parse(info[0]);
+            if (bool.Parse(info[1]))
+            {
+                CreateRain();
+            }
+        });
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -34,9 +47,7 @@ public class RainSkript : MonoBehaviour
             else if (Random.Range(Probability - 0.1f, 1) < Probability)
             {
                 timer = 0;
-                realRain = Instantiate(PrefabRain, transform);
-                var dur = realRain.GetComponent<ParticleSystem>().duration;
-                Destroy(realRain, dur);
+                CreateRain();
             }
             else
             {
@@ -48,6 +59,14 @@ public class RainSkript : MonoBehaviour
             if(realRain != null)
                 Destroy(realRain);
         }
+    }
+
+    private void CreateRain()
+    {
+        realRain = Instantiate(PrefabRain, transform);
+
+        var dur = realRain.GetComponent<ParticleSystem>().duration;
+        Destroy(realRain, dur);
     }
 
     public bool IsRain() => realRain != null;

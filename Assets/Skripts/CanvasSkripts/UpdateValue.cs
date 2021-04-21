@@ -18,7 +18,7 @@ public class UpdateValue : MonoBehaviour
     void Update()
     {
         stock = getStock();
-        text.text = ((int)stock.Get()).ToString();
+        text.text = ((int)stock.GetValue()).ToString();
         if (stock.IsMax()) text.color = Color.red;
         else text.color = Color.black;
     }

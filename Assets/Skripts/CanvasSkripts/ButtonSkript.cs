@@ -33,6 +33,9 @@ public class ButtonSkript : MonoBehaviour
         newG = null;
         rotate.SetActive(false);
         revert.SetActive(false);
+        foreach (var g in Hides) g.SetActive(false);
+        foreach (var g in Actives) g.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     private void CheckAndSet(string baseNameTag)
@@ -62,7 +65,7 @@ public class ButtonSkript : MonoBehaviour
         }
     }
 
-    private void hide()
+    public void hide()
     {
         rotate.SetActive(false);
         revert.SetActive(false);
@@ -77,6 +80,7 @@ public class ButtonSkript : MonoBehaviour
         rotate.SetActive(true);
         revert.SetActive(true);
         newG = Instantiate(g, new Vector3(0, 0, 0), new Quaternion());
+        newG.GetComponent<SquareController>().enabled = true;
         rotate.GetComponent<joysticController>().sqController = newG.GetComponent<SquareController>();
     }
 

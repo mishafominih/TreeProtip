@@ -5,20 +5,29 @@ using UnityEngine;
 
 public class LoadData : MonoBehaviour
 {
-    private readonly List<Action> _callbacks = new List<Action>();
-    public void Subscribe(Action callback)
+    private readonly List<Action<string>> _callbacks = new List<Action<string>>();
+    public void Subscribe(Action<string> callback)
     {
         _callbacks.Add(callback);
     }
 
-    public void Delete(Action action)
+    public void Delete(Action<string> action)
     {
         _callbacks.Remove(action);
     }
 
-    public void Publish()
+    public void Publish(string data, char separator)
     {
+        var strs = data.Split(new char[] { separator });
+        var index = 0;
         foreach (var callback in _callbacks)
-            callback();
+            try
+            {
+                callback(strs[index++]);
+            }
+            catch
+            {
+
+            }
     }
 }

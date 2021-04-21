@@ -10,6 +10,11 @@ TagManager:
   - stock
   - jostick
   - root
+  - Canvas
+  - target
+  - water
+  - sugar
+  - stone
   layers:
   - Default
   - TransparentFX

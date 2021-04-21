@@ -334,11 +334,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8105058937245594460}
   - component: {fileID: 5239193499373473844}
-  - component: {fileID: 6276414720246169359}
-  - component: {fileID: 1024807475204040265}
+  - component: {fileID: 562566814205767467}
+  - component: {fileID: 9158377621462770900}
   m_Layer: 0
   m_Name: Drop
-  m_TagString: Untagged
+  m_TagString: water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -384,8 +384,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!61 &6276414720246169359
-BoxCollider2D:
+--- !u!60 &562566814205767467
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -397,7 +397,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.026217341, y: 0.027002811}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -407,10 +407,46 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.68538547, y: 0.7917719}
-  m_EdgeRadius: 0
---- !u!114 &1024807475204040265
+  m_Points:
+    m_Paths:
+    - - {x: -0.033783913, y: 0.55019045}
+      - {x: -0.07742059, y: 0.5737562}
+      - {x: -0.15438175, y: 0.48864746}
+      - {x: -0.1927439, y: 0.3915596}
+      - {x: -0.15938318, y: 0.27297926}
+      - {x: -0.25948286, y: 0.19353485}
+      - {x: -0.2937448, y: 0.27115822}
+      - {x: -0.35687065, y: 0.25822496}
+      - {x: -0.3935836, y: 0.18458107}
+      - {x: -0.42042112, y: 0.093734264}
+      - {x: -0.3858564, y: 0.029198647}
+      - {x: -0.32826424, y: 0.001987934}
+      - {x: -0.2586143, y: 0.04902315}
+      - {x: -0.24947119, y: -0.13576984}
+      - {x: -0.2891481, y: -0.27193356}
+      - {x: -0.2988577, y: -0.30396748}
+      - {x: -0.2897172, y: -0.37369347}
+      - {x: -0.22165412, y: -0.4284438}
+      - {x: -0.14611328, y: -0.4342308}
+      - {x: -0.061802864, y: -0.3728485}
+      - {x: -0.061024547, y: -0.26657772}
+      - {x: -0.07915175, y: -0.19213533}
+      - {x: 0.16937387, y: -0.13318157}
+      - {x: 0.14845908, y: -0.22760105}
+      - {x: 0.18494391, y: -0.31706333}
+      - {x: 0.28372645, y: -0.3380947}
+      - {x: 0.35204852, y: -0.29046226}
+      - {x: 0.3708812, y: -0.24481106}
+      - {x: 0.35608327, y: -0.15663385}
+      - {x: 0.30892837, y: -0.036797047}
+      - {x: 0.21857882, y: 0.066093445}
+      - {x: 0.30059958, y: 0.07768822}
+      - {x: 0.34979427, y: 0.1765275}
+      - {x: 0.30078506, y: 0.33468533}
+      - {x: 0.23530948, y: 0.39181376}
+      - {x: 0.02871108, y: 0.36149693}
+      - {x: 0.0016423464, y: 0.4730615}
+--- !u!114 &9158377621462770900
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -422,8 +458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca4ec48eb74b954e86a23a68499a982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sugar: 15000
-  Water: 1000
+  Sugar: 1000
+  Water: 2000
 --- !u!1 &7073556718320637929
 GameObject:
   m_ObjectHideFlags: 0

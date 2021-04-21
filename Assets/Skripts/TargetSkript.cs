@@ -8,9 +8,21 @@ public class TargetSkript : MonoBehaviour
 
 
     private Camera cam;
+    private void Awake()
+    {
+    }
+
+    private void OnDisable()
+    {
+        this.enabled = true;
+    }
 
     void Start()
     {
+        if(transform.parent != null)
+        {
+            target = transform.parent.gameObject;
+        }
         cam = CameraMove.Instance.GetComponent<Camera>();
         if (target != null && gameObject.tag == "list") SetLink();
     }
