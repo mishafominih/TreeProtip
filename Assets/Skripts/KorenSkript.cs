@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class KorenSkript : MonoBehaviour
 {
     public static KorenSkript Instance;
-    public float Delta = 2;
 
     private void Awake()
     {
@@ -20,8 +19,6 @@ public class KorenSkript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var level = GetComponent<LavelInfo>().Lavel;
-        GameInfo.Instance.water.AddPart(Delta * Time.deltaTime * level * level);
     }
 
     public List<float> GetCast()

@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sugar: 10000
-  Water: 100
+  Water: 0
 --- !u!1 &7992818695648093079
 GameObject:
   m_ObjectHideFlags: 0

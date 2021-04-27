@@ -11,6 +11,11 @@ public class OnSummerEvent
         _callbacks.Add(callback);
     }
 
+    public void Delete(Action action)
+    {
+        _callbacks.Remove(action);
+    }
+
     public void Publish()
     {
         foreach (var callback in _callbacks)

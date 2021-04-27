@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1844aab121e2132499f9740ec99d6195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Water: 0.5
   delta: 20
 --- !u!114 &6758874492722558611
 MonoBehaviour:
@@ -168,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06774bff34b126469ba581b23e77c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PolutionTime: 55
+  MaxLose: 1500
 --- !u!60 &2948489236108393079
 PolygonCollider2D:
   m_ObjectHideFlags: 0

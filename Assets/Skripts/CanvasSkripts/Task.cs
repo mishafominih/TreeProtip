@@ -21,7 +21,7 @@ public class Task : MonoBehaviourSave
 
     public override string SaveData()
     {
-        return tasks[0] + "." + tasks[1] + "." + tasks[2];
+        return tasks[0] + "." + tasks[1] + "." + tasks[2] + "." + Lavel;
     }
 
     public override void LoadData(string data)
@@ -33,6 +33,7 @@ public class Task : MonoBehaviourSave
         tasks[0] = info[0];
         tasks[1] = info[1];
         tasks[2] = info[2];
+        Lavel = info[3];
         SetTask();
     }
 

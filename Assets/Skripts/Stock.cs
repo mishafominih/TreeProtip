@@ -5,6 +5,7 @@ using UnityEngine;
 public class Stock : MonoBehaviourSave
 {
     public float MaxValue;
+    public float StartValue = 0;
 
     private float StartMaxValue;
     private float value;
@@ -12,7 +13,7 @@ public class Stock : MonoBehaviourSave
     private void Start()
     {
         StartMaxValue = MaxValue;
-        
+        value = StartValue;
     }
 
     public override string SaveData()

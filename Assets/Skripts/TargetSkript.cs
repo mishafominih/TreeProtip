@@ -50,4 +50,11 @@ public class TargetSkript : MonoBehaviour
         }
         transform.localPosition = new Vector3(newPos.x, newPos.y, 0);
     }
+
+    public bool OnTree()
+    {
+        if (target == null) return false;
+        return target.GetComponent<Fall>() == null;
+
+    }
 }

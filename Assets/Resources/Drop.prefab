@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 8105058937245594460}
   - component: {fileID: 5239193499373473844}
   - component: {fileID: 562566814205767467}
-  - component: {fileID: 9158377621462770900}
+  - component: {fileID: 3271411671889282194}
   m_Layer: 0
   m_Name: Drop
   m_TagString: water
@@ -446,7 +446,7 @@ PolygonCollider2D:
       - {x: 0.23530948, y: 0.39181376}
       - {x: 0.02871108, y: 0.36149693}
       - {x: 0.0016423464, y: 0.4730615}
---- !u!114 &9158377621462770900
+--- !u!114 &3271411671889282194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -455,11 +455,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5301767804593554324}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dca4ec48eb74b954e86a23a68499a982, type: 3}
+  m_Script: {fileID: 11500000, guid: f413299203e8a854a9d7d4c99242d9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sugar: 1000
-  Water: 2000
 --- !u!1 &7073556718320637929
 GameObject:
   m_ObjectHideFlags: 0

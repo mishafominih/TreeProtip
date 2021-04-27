@@ -6,77 +6,40 @@ using UnityEngine;
 
 public class PolutionListSkript : MonoBehaviour
 {
-    public float PolutionTime;
+    public int MaxLose = 1500;
 
-    private float timer = 0;
     private const float percentColorPolution = 0.4f;
     private float percentPolution;
-
-    private Vector3 autumn = new Vector3(255, 155, 0);
-
     private SpriteRenderer sprite;
-    private PolygonCollider2D collider;
     private TargetSkript target;
+    private float maxColor;
+    private float minColor = 90;
+    private int lose;
     void Start()
     {
         target = GetComponent<TargetSkript>();
-        collider = GetComponent<PolygonCollider2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+        maxColor = sprite.color.r * 255;
     }
 
     void Update()
     {
-        if (target.target == null) return;
-        if (target.target.GetComponent<Fall>() != null) return;
-        if (timer < PolutionTime) timer += Time.deltaTime;
-        else timer = PolutionTime;
+        if (!target.OnTree()) return;
+        
+        percentPolution = (lose / (float)MaxLose);
+        var deltaColor = (maxColor - minColor) * (1 - percentPolution);
+        var newColor = (minColor + deltaColor) / maxColor;
+        sprite.color = new Color(newColor, newColor, newColor);
 
-        if (Input.touchCount == 1 || Input.GetMouseButton(0))
+        if (lose >= MaxLose)
         {
-            var touch = CameraMove.Instance.GetComponent<Camera>()
-                .ScreenToWorldPoint(GetTouch());
-            if (collider.OverlapPoint(touch))
-            {
-                timer = 0;
-            }
+            target.target.GetComponent<Link>().Die();
         }
 
-        percentPolution = (timer / PolutionTime);
-        CalculatePolution();
-
-        if (RainSkript.Instance.IsRain())
-        {
-            timer = 0;
-        }
     }
 
-    private void CalculatePolution()
+    public void RegisterLoseWater()
     {
-        var startColor = getAutumnPolution();
-        var deltaColor = (1 - percentColorPolution) * (1 - percentPolution);
-        var newColor = startColor * (deltaColor + percentColorPolution)/255;
-        sprite.color = new Color(newColor.x, newColor.y, newColor.z);
-    }
-
-    private Vector3 getAutumnPolution()
-    {
-        var start = new Vector3(255, 255, 255);
-        var time = Seazons.Instance.WinterTime;
-        var timer = Seazons.Instance.GetTime();
-        var persent = timer / time;
-        var delta = (start - autumn) * (1-persent);
-        return autumn + delta;
-    }
-
-    public float GetProfit(float value)
-    {
-        return value * (1 - percentPolution);
-    }
-
-
-    private static Vector2 GetTouch()
-    {
-        if (Input.touchCount > 0) return Input.GetTouch(0).position;
-        return Input.mousePosition;
+        lose++;
     }
 }

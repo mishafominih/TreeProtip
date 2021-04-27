@@ -358,6 +358,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree
       objectReference: {fileID: 0}
+    - target: {fileID: 2814667765349237422, guid: a9a115f5e646b694bb69d52a6e3032f2,
+        type: 3}
+      propertyPath: StartValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103284550686319168, guid: a9a115f5e646b694bb69d52a6e3032f2,
+        type: 3}
+      propertyPath: Water
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9a115f5e646b694bb69d52a6e3032f2, type: 3}
 --- !u!1001 &156628778
@@ -601,7 +611,7 @@ PrefabInstance:
     - target: {fileID: 921764605463720627, guid: 63ff46a83d5386b42b25ebef91822534,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1233759432387842036, guid: 63ff46a83d5386b42b25ebef91822534,
         type: 3}
@@ -825,11 +835,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc0cd76b8b30534aa33ab62185e330f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SummerTime: 25
+  SummerTime: 15
   SummerBackGround: {fileID: 21300000, guid: 7e15048006259224aa1ff52d1bdbcc5e, type: 3}
   SummerBackGroundDown: {fileID: 21300000, guid: 641703bcf22cdc14884db3dadae00663,
     type: 3}
-  WinterTime: 150
+  WinterTime: 15
   WinterBackGround: {fileID: 21300000, guid: a0d105127b1d681429656c74be366cdb, type: 3}
   WinterBackGroundDown: {fileID: 21300000, guid: 0cefc39586731594095a43a37fa67121,
     type: 3}
@@ -2012,12 +2022,12 @@ PrefabInstance:
     - target: {fileID: 8105058937245594460, guid: ceb75771f88e82f44be82b0be489e739,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.61773646
+      value: 1.413
       objectReference: {fileID: 0}
     - target: {fileID: 8105058937245594460, guid: ceb75771f88e82f44be82b0be489e739,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5170765
+      value: 1.767
       objectReference: {fileID: 0}
     - target: {fileID: 8105058937245594460, guid: ceb75771f88e82f44be82b0be489e739,
         type: 3}
@@ -2954,7 +2964,6 @@ MonoBehaviour:
   ControlX: 3
   UpY: 3
   ControlSize: 7
-  MidleY: -7
   DownY: -7
 --- !u!81 &2138653982
 AudioListener:

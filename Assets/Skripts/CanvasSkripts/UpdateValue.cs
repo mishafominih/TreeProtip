@@ -18,8 +18,9 @@ public class UpdateValue : MonoBehaviour
     void Update()
     {
         stock = getStock();
-        text.text = ((int)stock.GetValue()).ToString();
-        if (stock.IsMax()) text.color = Color.red;
+        int value = Mathf.RoundToInt(stock.GetValue());
+        text.text = value.ToString();
+        if (value == Mathf.RoundToInt(stock.MaxValue)) text.color = Color.red;
         else text.color = Color.black;
     }
 
