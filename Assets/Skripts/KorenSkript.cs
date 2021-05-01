@@ -23,12 +23,12 @@ public class KorenSkript : MonoBehaviour
 
     public List<float> GetCast()
     {//вначале сахар потом вода
-        var z = GameObject.FindGameObjectsWithTag("stock")
-            .Select(x => x.GetComponent<Stock>().MaxValue)
-            .OrderByDescending(x => x).ToList();
-        z[0] = z[0] * 0.4f;
-        z[1] = z[1] * 0.25f;
-        return z;
+        var lavel = GetComponent<LavelInfo>();
+        return new List<float>
+        {
+            lavel.Lavel * lavel.Lavel * 10,
+            0
+        };
     }
 
     public void Grow()
